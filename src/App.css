@@ -6,6 +6,7 @@
   position: relative;
   background-size: cover;
   background-position: 50% 50%;
+  overflow: scroll;
 } 
 
 .Header{
@@ -18,7 +19,6 @@
   margin: 3em 0em;
   width: 9em;
 }
-
 .Entry{
   /* height: 40%; */
   position: absolute;
@@ -37,7 +37,7 @@ h1.Title{
   font-family: 'Roboto', sans-serif;
   color: #FFFFFF;
   font-size: 3em;
-  text-align: center;
+  text-align: center; 
 }
 .SearchBar{
   /* width: 100%; */
@@ -47,19 +47,23 @@ h1.Title{
   border-radius: 1em;
 }
 
-.Appear{
-  height: 110vh;
+.SResults{
+  /* height: 110vh; */
+  position: absolute;
   width: 100vw;
-  background-color: #EAEAEA;
+  /* background-color: #EAEAEA; */
+  background-color: #FFFFFF;
   border-top-left-radius: 4em;
   border-top-right-radius: 4em;
-  transform: translateY(-100%);
+  transform: translateY(-110%);
 }
-.Entry:hover ~ .Appear{
+/*.Entry:hover ~ */
+.SResults_Appear{
   -webkit-animation: slideIN 1s linear forwards;
   animation: slideIN 1s linear forwards ;
 }
-.Entry:hover .SearchBar{
+/* .Entry:hover*/ 
+.SearchBar_Appear{ 
   -webkit-animation: BarSlide 1s linear forwards;
   animation: BarSlide 1s linear forwards ;
 }
@@ -68,12 +72,123 @@ h1.Title{
   0%   {transform: translateY(100%);}
   25%  {transform: translateY(75%);}
   50%  {transform: translateY(50%);}
-  100% {transform: translateY(25%);}
+  100% {transform: translateY(15%);}
 }
 
 @keyframes BarSlide {
-  0%   {transform: translateY(-100%);}
-  25%  {transform: translateY(-200%);}
-  50%  {transform: translateY(-300%);}
-  100% {transform: translateY(-600%);}
+  0%   {transform: translateY(-200%);}
+  25%  {transform: translateY(-300%);}
+  50%  {transform: translateY(-400%);}
+  100% {transform: translateY(-700%);}
 }
+
+
+.text_results{
+  /* font-size: 3em; */
+  font-family: 'Roboto', 'BlinkMacSystemFont';
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  font-size: 2em;
+  padding: 1em 0em;
+}
+
+.graphs_results{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ChartsGraphs{
+  flex-grow: 1;
+  margin: 0.2em 0.2em;
+  width: 49%;
+  background-color: #d3d3d3c4;
+  border-radius: 0.5em;
+  border:1px solid red;
+}
+.ChartsGraphs_img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+}
+
+.LineGraphs{
+  flex-grow: 1;
+  margin: 0.2em 0.2em;
+  min-width: 49%;
+  background-color: #d3d3d3c4;
+  border-radius: 0.5em;
+  border:1px solid red;
+}
+.LineGraphs_img{
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5em;
+}
+
+.PieGraphs{
+  /* flex-shrink: 1; */
+  margin: 0.2em 0.2em;
+  min-width: 49%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  background-color: #d3d3d39a;
+  border-radius: 0.5em;
+  border:1px solid red;
+}
+.PieGraphs_img{
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5em;
+}
+
+/* smartphones, iPhone, portrait 480x320 phones */ 
+@media (min-width:320px)  { 
+  .App{
+    background-image: url('helprs/BGimg/MobileBG.jpg');
+  }
+
+  .Logo{
+    margin: 8em 0em;
+    width: 6em;
+  }
+
+  h1.Title{
+    font-size: 2em;
+  }
+
+  .SResults_Appear{
+    -webkit-animation: slideIN 1s linear forwards;
+    animation: slideIN 1s linear forwards ;
+  }
+  /* .Entry:hover*/ 
+  .SearchBar_Appear{ 
+    -webkit-animation: BarSlide 1s linear forwards;
+    animation: BarSlide 1s linear forwards ;
+  }
+
+  @keyframes slideIN {
+    0%   {transform: translateY(100%);}
+    25%  {transform: translateY(75%);}
+    50%  {transform: translateY(50%);}
+    100% {transform: translateY(25%);}
+  }
+  
+  @keyframes BarSlide {
+    0%   {transform: translateY(-200%);}
+    25%  {transform: translateY(-300%);}
+    50%  {transform: translateY(-400%);}
+    100% {transform: translateY(-500%);}
+  }
+
+  .text_result{
+    font-size: 0.6em;
+  }
+
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
