@@ -1,0 +1,108 @@
+.SResults{
+    /* height: 110vh; */
+    position: absolute;
+    width: 100vw;
+    /* height: 100%; */
+    /* background-color: #EAEAEA; */
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0.7) 0%, rgba(40,5,105,0.7) 35%, rgba(255,255,255,0.5) 100%);
+    border-top-left-radius: 4em;
+    border-top-right-radius: 4em;
+    transform: translateY(-110%);
+    /* overflow: hidden; */
+}
+  /*.Entry:hover ~ */
+.SResults_Appear{
+    -webkit-animation: slideIN 1s linear forwards;
+    animation: slideIN 1s linear forwards ;
+}
+
+@keyframes slideIN {
+    0%   {transform: translateY(100%);}
+    25%  {transform: translateY(75%);}
+    50%  {transform: translateY(50%);}
+    100% {transform: translateY(5%);}
+}
+
+.text_results{
+    /* font-size: 3em; */
+    font-family: 'Roboto', 'BlinkMacSystemFont';
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    font-size: 2em;
+    padding: 1em 0em;
+    color: #ccc;
+}
+
+.graphs_results{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Graph_Container{
+    /* flex-grow: 1; */
+    /* flex-shrink: 0; */
+    flex-basis: 0;
+    margin: 0.2em 0.2em;
+    min-width: 40%;
+    background-color: #E0E0E0;
+    opacity: 0.7;
+    border-radius: 0.5em;
+    /* border:1px solid linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(204,204,204,1) 100%);; */
+    box-shadow: inset 0px 3px 5px 0 rgba(0, 0, 0, 0.616), 
+    inset 0 66px 15px 0px #ccc;
+}
+
+.Graph_Img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5em;
+}
+
+
+/* Safari Only */
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) {
+        .SResults{
+            /* height: 100vh; */
+            overflow: auto;
+        }
+    } 
+}
+
+/* Iphone X Potrait Only 
+For More info Visit: https://css-tricks.com/snippets/css/media-queries-for-standard-devices/
+*/
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3)
+and (orientation: portrait) { 
+    .SResults{
+        width: 100%;
+        /* height: 100%; */
+    }
+    .SResults_Appear{
+        -webkit-animation: slideIN 1s linear forwards;
+        animation: slideIN 1s linear forwards ;
+    }
+
+    @keyframes slideIN {
+        0%   {transform: translateY(100%);}
+        25%  {transform: translateY(75%);}
+        50%  {transform: translateY(50%);}
+        100% {transform: translateY(25%);}
+    }
+
+    .text_result{
+        font-size: 3px;
+    }
+
+    .Graph_Container{
+        flex-basis: 0;
+        min-width: 85%;
+    }
+
+}

@@ -5,20 +5,32 @@ import { axiosInstance } from "./axiosInstance";
 // const tokenSec = process.env.REACT_APP_EX_TWAPI_ACCTOKEN_SEC
 
 class API {
+  // static baseURL = `${process.env.REACT_APP_BASE_URL}/1.1/`
   //Return content from the DB
   
-  Search = async (query, lan) => {
-    return await axiosInstance
-      .get(`/tweets/search/30day/dev.json?query=${query}`, {
-        headers:{
-          authorization: "Bearer AAAAAAAAAAAAAAAAAAAAACsx%2BQAAAAAAoJ3g9mYIwaeZMfxBIi12q9XCSDU%3DUp1biGZIlrCoFuaVvrRPaNh2LeYxndVlaUuahwhXkNsCOIwOPt",
-        },
-        params:{}
-      }).then((response) => {
-        return response.data;
-      }).catch((err) => {
-        return err;
-      });
+  Search = async (query) => { 
+      // headers: {
+      //   Authorization: "Bearer AAAAAAAAAAAAAAAAAAAAACsx%2BQAAAAAA2%2F9Onm5ZIzMJotHeoJQpCFtJV10%3DSK9tQfBsNZirwauxiFzDXl80sB7M0xMGLaAbtGZkhReYFBA1Rz"
+      // },
+    //   const requestOptions = {
+    //     method: 'POST',
+    //     redirect: 'follow',
+    //     body: query,
+    //   };
+    
+    // const req = await fetch(`${process.env.REACT_APP_BASE_URL}/twitter/`, requestOptions)
+    //   .then((response) => console.log(JSON.parse(response)))
+    //   // .then(result => console.log(result))
+    //   .catch((error) => console.log(error))
+    // await axiosInstance.post()
+    return await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/twitter/`, query)
+    .then((res) =>{
+      console.log(res.data.results);
+      return res.data;
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
   };
 
   //Create a new content to the DB
