@@ -25,7 +25,7 @@ class API {
     // await axiosInstance.post()
     return await axiosInstance.post(`${process.env.REACT_APP_BASE_URL}/twitter/`, query)
     .then((res) =>{
-      console.log(res.data.results);
+      console.log(res);
       return res.data;
     })
     .catch((err) =>{

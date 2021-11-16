@@ -3,18 +3,11 @@ Content-Type: application/json
 
 {}
 ###
-GET http://127.0.0.1:8000/TwitterNLP/analyze/
+POST http://127.0.0.1:8000/twitter/
 Content-type: application/json; charset=utf-8
 
 {
-    "data": "I like this website",
-    "notSoData" : "lalele",
-    "anotherArray" :
-    {
-        "jpt" : "JP",
-        "ord" : 9
-    }
-
+    "btc"
 }
 
 ###
