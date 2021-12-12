@@ -1,157 +1,40 @@
 import React, {useState, useEffect} from 'react'
 // import API from './helprs/api'
-import './Styles/testTwitter.css'
+// import './Styles/Twitter.css'
+import { v4 as uuidv4 } from 'uuid';
+import '../Styles/testTwitter.css'
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiRepost} from 'react-icons/bi';
 import { FaRegComment} from 'react-icons/fa';
 import { MdVerified} from 'react-icons/md';
 import { IoOpenOutline} from 'react-icons/io5';
+import {useLanguage, LangOptions } from '../context';
 
 
-export default function TestTwitter() {
+
+
+export default function Twitter(props) {
     const [postiveTweets, setPostiveTweets] = useState([])
     const [negativeTweets, setNegativeTweets] = useState([])
     const [isPositiveCliced, setIsPositiveCliced] = useState('true')
-    const [isNegativeClicked, setIsNegativeClicked] = useState()
+    const [isNegativeClicked, setIsNegativeClicked] = useState('false')
     const [tweetsDisplay, setTweetsDisplay] = useState([])
     const [lastScrollPos, setLastScrollPos] = useState(0)
     const [lastScrollUpPos, setLastScrollUpPos] = useState(0)
     const [divHeight, setDivHeight] = useState(0)
 
-
-    const SearchTerm = "Ronaldo"
-
-    const postives = [
-        {
-            "id" : "94304",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 5,
-            "retweet_count" : 304,
-            "favorite_count" : 800, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg",
-            "user_id" : "e325234524452",
-            "verified": true
-        },
-        {
-            "id" : "943324",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 30,
-            "retweet_count" : 34,
-            "favorite_count" : 100, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
-            "user_id" : "e32523442524452",
-            "verified": true
-        },
-        {
-            "id" : "9431104",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 1000,
-            "retweet_count" : 3404,
-            "favorite_count" : 6800, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://allthings.how/wp-content/uploads/2020/10/allthings.how-how-to-change-your-profile-picture-on-google-meet-profile-photo.png",
-            "user_id" : "e3252344153524452",
-            "verified": true
-        }
-    ]
-
-    const negatives = [
-        {
-            "id" : "9430304",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 0,
-            "retweet_count" : 20004,
-            "favorite_count" : 50800, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg",
-            "user_id" : "e32523004524452",
-            "verified": true
-        },
-        {
-            "id" : "94809304",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 90,
-            "retweet_count" : 3304,
-            "favorite_count" : 8400, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
-            "user_id" : "e325234908524452",
-            "verified": true
-        },
-        {
-            "id" : "943005004",
-            "date" : "nov 29 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
-            "reply_count": 0,
-            "retweet_count" : 1304,
-            "favorite_count" : 2300, 
-            "screen_name": "khalid wew",
-            "username" : "Ouroe",
-            "profile_image_url": "https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg",
-            "user_id" : "e32523454050924452",
-            "verified": true
-        },
-        {
-            "id" : "9430304",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 0,
-            "retweet_count" : 20004,
-            "favorite_count" : 50800, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://img.freepik.com/free-photo/pleasant-looking-serious-man-stands-profile-has-confident-expression-wears-casual-white-t-shirt_273609-16959.jpg?size=626&ext=jpg",
-            "user_id" : "e32523004524452",
-            "verified": true
-        },
-        {
-            "id" : "94809304",
-            "date" : "nov 25 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.",
-            "reply_count": 0,
-            "retweet_count" : 3304,
-            "favorite_count" : 8400, 
-            "screen_name": "sudiew wew",
-            "username" : "Sudiew43",
-            "profile_image_url": "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
-            "user_id" : "e325234908524452",
-            "verified": true
-        },
-        {
-            "id" : "943005004",
-            "date" : "nov 29 39:32 2021",
-            "tweet" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
-            "reply_count": 0,
-            "retweet_count" : 1304,
-            "favorite_count" : 2300, 
-            "screen_name": "khalid wew",
-            "username" : "Ouroe",
-            "profile_image_url": "https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg",
-            "user_id" : "e32523454050924452",
-            "verified": true
-        }
-    ]
     //get the dev of the buttons to minuplate when scrolling up or down
     const buttons = document.getElementById("display_btns");
+
+    //get the value of langugage context
+    const currentLang = useLanguage();
 
     //Values to be used for the scroll event listner function
     const scorllDownThreshold = 180
     const scrollUpThreshold = 40
     const maxBottomVal = 90
     const maxDivHeight = 40
-
+    
     function listenScrollEvent({target}){
         /**ToDO: fix the fast scrolling issue (when scrolling fast the div dosen't behave as expected (doesn't fully disapear or fully apear)
          * /*TODO: add threshold after which the div will apear or dissapear (currently the div appear and dispear as soon as the user scroll up and down)
@@ -163,9 +46,8 @@ export default function TestTwitter() {
         */
         //get the tweets scroll div height
         // const scrollDivHeight = document.getElementById('scrl_twts').scrollHeight
-
         const currentScrollPos = target.scrollTop
-        console.log(`lastScrollpos: ${lastScrollPos}, lastScrollUppos: ${lastScrollUpPos}, CurrentScroll: ${currentScrollPos}`)
+        // console.log(`lastScrollpos: ${lastScrollPos}, lastScrollUppos: ${lastScrollUpPos}, CurrentScroll: ${currentScrollPos}`)
         if (currentScrollPos < scorllDownThreshold ){
             //remove the bottom and height properties so the div have it's original posistion
             buttons.style.removeProperty("bottom")
@@ -175,7 +57,6 @@ export default function TestTwitter() {
             
             // if((target.scrollTop-scorllDownThreshold > maxBottomVal) && (divHeight-(target.scrollTop-scorllDownThreshold) < maxDivHeight)) {console.log("A Finshed******"); return setLastScrollUpPos(target.scrollTop)}
             // if the div have fade in (means the user scroll down (hide the div) then scroll up (show the div) then scrolled down again) change the cacluation 
-            console.log("***HERE AGAIN SCROLL DOWN***")
             if (lastScrollUpPos > lastScrollPos){
                 if (currentScrollPos-lastScrollPos < maxBottomVal) buttons.style.setProperty('bottom', `${currentScrollPos-lastScrollPos}px`)
                 if (divHeight-(currentScrollPos-lastScrollPos) >= maxDivHeight)  buttons.style.setProperty('height', `${divHeight-(currentScrollPos-lastScrollPos)}px`)
@@ -217,19 +98,6 @@ export default function TestTwitter() {
         return newDate; 
     }
 
-    //Handle positive button click
-    const posiClick = () =>{
-        setIsNegativeClicked('false')
-        setIsPositiveCliced('true')
-    }
-
-    //Handle negative button click
-    const negClick = () =>{
-        setIsPositiveCliced('false')
-        setIsNegativeClicked('true')
-    }
-
-
     //Compare tweets based on their likes and rewtees
     function compare( a, b ) {
         if ((a.retweet_count + a.favorite_count) > (b.retweet_count + b.favorite_count)){
@@ -240,25 +108,35 @@ export default function TestTwitter() {
         }
         return 0;
     }
+    //   objs.sort( compare );
 
-    //Add tweets to their own classification, after sorting them.
+    const posiClick = () =>{
+        setIsNegativeClicked('false')
+        setIsPositiveCliced('true')
+    }
+
+    const negClick = () =>{
+        setIsPositiveCliced('false')
+        setIsNegativeClicked('true')
+    }
+
+    //Add tweets to their own classification.
     useEffect(() => {
-        /**when thes fucntion loads after each refresh or new search,
+        /**when thes fucntion loads after each refresh or new search
           empty previous tweets then sort the new tweets based on their (likes + retweets) */
         setPostiveTweets([])
         setNegativeTweets([])
 
-        postives.sort(compare)
-        negatives.sort(compare)
+        props.postive.sort(compare)
+        props.negative.sort(compare)
 
-        setPostiveTweets(postives) 
-        setNegativeTweets(negatives)
+        setPostiveTweets(props.postive) 
+        setNegativeTweets(props.negative)
 
         //get the buttons div height to be used in the scrollhandler function
         const buttons = document.getElementById("display_btns");
         setDivHeight(buttons.clientHeight)
-    }, [])
-
+    }, [props.postive, props.negative])
 
     //display tweets based on the button clicked (i.e positive or negative)
     const displayRequestClass = () => {
@@ -266,7 +144,7 @@ export default function TestTwitter() {
         if (isPositiveCliced === 'true'){
             classifiedTweets = postiveTweets.map((tweet) => {
                 return(
-                    <span className="tweet_container" key={tweet.id}>
+                    <span className="tweet_container" key={tweet.id+uuidv4()}>
                         <div className="profile_img">
                             <img src={tweet.profile_image_url} alt="profile_img"></img>
                         </div>
@@ -307,9 +185,9 @@ export default function TestTwitter() {
         )}
         else{
             classifiedTweets = negativeTweets.map((tweet) => {
-                tweet.tweet.replace(SearchTerm, "<b style={{'color': '#1DA1F2'}}>"+SearchTerm+"</b>")
+                tweet.tweet.replace(props.searchTerm, "<b style={{'color': '#1DA1F2'}}>"+props.searchTerm+"</b>")
                 return(
-                    <span className="tweet_container" key={tweet.id}>
+                    <span className="tweet_container" key={tweet.id+uuidv4()}>
                         <div className="profile_img">
                             <img src={tweet.profile_image_url} alt="profile_img"></img>
                         </div>
@@ -354,28 +232,61 @@ export default function TestTwitter() {
     //update tweets to display based on button clicked
     useEffect(() => {
         async function changeDisplayedTweets (){
+            setTweetsDisplay([])
             await setTweetsDisplay(displayRequestClass())
+        };
+        changeDisplayedTweets().then(() => {
             //Highlight Search Term
-            const upperCaseFirst = SearchTerm.charAt(0).toUpperCase() + SearchTerm.slice(1).toLowerCase();
-            const tweetsElements = [document.getElementsByClassName('tweet_text')]
+            const upperCaseFirst = props.searchTerm.charAt(0).toUpperCase() + props.searchTerm.slice(1).toLowerCase();
+            const hashtag = props.searchTerm.replace(" ", '_')
+            const tweetsElements = document.getElementsByClassName('tweet_text')
             for (let i = 0; i < tweetsElements.length; i++) {
-                document.getElementsByClassName('tweet_text')[i].innerHTML = document.getElementsByClassName('tweet_text')[i].innerHTML.replaceAll(`${upperCaseFirst}}`, "<b>"+upperCaseFirst+"</b>");
+                tweetsElements[i].innerHTML = tweetsElements[i].innerHTML.replaceAll(`${upperCaseFirst}`, "<b>"+upperCaseFirst+"</b>");
+                tweetsElements[i].innerHTML = tweetsElements[i].innerHTML.replaceAll(`${hashtag}`, "<b>"+hashtag+"</b>");
             }
             console.log(upperCaseFirst)
-            // console.log(props.searchTerm)
-        };
-        changeDisplayedTweets();
-    }, [postiveTweets, negativeTweets, isPositiveCliced, isNegativeClicked])
+            console.log(props.searchTerm)
+        });
+    }, [postiveTweets, negativeTweets, isPositiveCliced, isNegativeClicked, props.searchTerm])
 
     return (
         <div className="display_tweets">
-            <div className='display_btns' id='display_btns' scroll-pos={`-${lastScrollPos}%`}>
-                <button className='positive_btn' clicked={isPositiveCliced} onClick={posiClick}> <b>Positive</b> </button>
-                <button className='negative_btn' clicked={isNegativeClicked} onClick={negClick}> <b>Negative</b> </button>
+            <div className='display_btns' id='display_btns'>
+                <button className='positive_btn' clicked={isPositiveCliced} onClick={posiClick}> <b>{LangOptions.Twitter[currentLang].postive}</b> </button>
+                <button className='negative_btn' clicked={isNegativeClicked} onClick={negClick}> <b>{LangOptions.Twitter[currentLang].Negative}</b> </button>
             </div>
-            <div className="scroll_tweets" id="scrl_twts" onScroll={listenScrollEvent}> 
+            <div className="scroll_tweets" onScroll={listenScrollEvent}> 
                 {tweetsDisplay}
             </div>
         </div>
     )
 }
+
+
+// <span className="tweet_container">
+//     <img src={props.tweets[1].user.profile_image_url} alt="profile image"></img>
+//     <div className="user_info">
+//         <span style={{'display': 'flex', 'align-items':'center'}}>
+//             <b style={{'color':'#F5F8FA', 'font-size':'1em', 'margin-left': '-0.6em'}}>{props.tweets[1].user.name}</b>
+//             <p style={{'color':'#AAB8C2', 'font-size':'0.8em', 'margin-left': '0.8em'}}>{`@${props.tweets[1].user.screen_name}`}</p>
+//         </span>
+//         <p className='tweet_text' >{ props.tweets[1].text}</p>
+//     </div>
+// </span>
+
+
+// const FileSaver = require('file-saver');
+
+// // async function search (){
+// // }
+// async function search(){
+//     const query = "dave chappelle"
+//     await API.Search(query, 'en').then((res) =>{
+//         console.log(res.results);
+//         //Write the tweets to json file
+//         const json = JSON.stringify(res.results);
+//         const blob = new Blob([json], {type: "application/json;charset=utf-8"});
+//         FileSaver.saveAs(blob, "mynewTweets2.json");
+//     });
+// }
+

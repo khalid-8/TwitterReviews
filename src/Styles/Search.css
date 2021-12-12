@@ -8,6 +8,10 @@
   background-position: 50% 50%;
   overflow: scroll;
   scroll-behavior: smooth;
+  /* If you want to implement it in very old browser-versions */
+  -webkit-user-select: none; /* Chrome/Safari */ 
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
 } 
 ::-webkit-scrollbar {
   display:none;
@@ -29,6 +33,16 @@
   width: 30vh;
   z-index: 0;
   opacity: 0.8;
+}
+
+.ChangLang{
+  position:fixed;
+  display: flex;
+  align-items: center;
+  right: 2em;
+  top: 2em;
+  z-index: 5;
+  /* border: 1px solid green; */
 }
 
 .MainArea{
@@ -100,7 +114,7 @@ h1.Title{
   justify-content: center;
   align-items: center;
   filter: blur(3px);
-  z-index: 1;
+  z-index: 10;
   /* filter: blur(3px);
   -webkit-filter: blur(3px); */
   
@@ -158,12 +172,12 @@ h1.Title{
 @media not all and (min-resolution:.001dpcm) 
 { @supports (-webkit-appearance:none) {
 
-      @keyframes MainAreaSlide {
+      /* @keyframes MainAreaSlide {
         0%   {transform: translate(-50%, -10%);}
         25%  {transform: translate(-50%, -80%);}
         50%  {transform: translate(-50%, -120%);}
         100% {transform: translate(-50%, -295%);}
-      }
+      } */
       #SeachBar{
         /* border-color: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255,255,255,1) 100%); */
         border:  1px solid linear-gradient(120deg, rgba(2,0,36,0.6) 0%, rgba(40,5,105,0.5) 53%, rgba(255,255,255,0.3) 100%);
@@ -176,19 +190,19 @@ h1.Title{
         width: 35%;
       }
       h1.Title{
-        font-size: 5.6em;
+        /* font-size: 5.6em; */
       }
       #SeachBar{
-        width: 90%;
+        /* width: 90%;
         font-size: 1.7em;
         display: flex;
-        justify-content: center;
+        justify-content: center; */
         /* height: ; */
       }
       .mainArea_slide #SeachBar{
         /* display: flex; */
         /* margin: 2em 0em; */
-        top: 2em;
+        /* top: 2em; */
       }
     } 
 }

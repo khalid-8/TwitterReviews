@@ -46,7 +46,7 @@
     border: 1px solid #ccc; 
     box-shadow: -2px 4px #52b7f19f;
 }
-.positive_btn[clicked=true]{
+.positive_btn[clicked]{
     background-color: #52b7f1;
     border: 1px solid #ccc; 
     box-shadow: -2px 1px #52b7f19f;
@@ -59,7 +59,7 @@
     border: 1px solid #ccc; 
     box-shadow: 2px 4px #f1526498;;
 }
-.negative_btn[clicked=true]{
+.negative_btn[clicked]{
     background-color: #f15264;
     border: 1px solid #ccc; 
     box-shadow: 1px 2px #f1526498;
