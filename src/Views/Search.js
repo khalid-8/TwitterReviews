@@ -18,8 +18,9 @@ export default function Search() {
     async function IpAddExceedLimit(){
         const ipAdd = await API.GetIpAddress()
         console.log(ipAdd.IPv4)
-        if (ipAdd.IPv4 === "33.167.66.156") return true
-        return false
+        return ipAdd.IPv4
+        // if (ipAdd.IPv4 === "33.167.66.156") return true
+        // return false
     }
 
     async function search(query){
@@ -28,11 +29,7 @@ export default function Search() {
             notify(LangOptions.MainPage[currentLang].emptyError)
             return -1;
         }
-        //check if the user exceeded their daily limit by checking their IP address
-        if(await IpAddExceedLimit()) {
-            notify(LangOptions.MainPage[currentLang].exceedError)
-            return -1;
-        }
+        const userIp = await IpAddExceedLimit()
         // trigger the loader
         SetLoading(true);
         //check if the query is in arabic
@@ -41,9 +38,17 @@ export default function Search() {
         //request body to be sent to the backend
         const req = {
             'query' : query,
-            'lan' : ar.test(query)? "ar" : "en"}
-
+            'lan' : ar.test(query)? "ar" : "en",
+            'ip_address': userIp
+        
+        }
+        //Send th request to the Backend
         const TweetSearch = await API.Search(req)
+        //check if the user exceeded their daily limit by checking their IP address
+        if(TweetSearch === -2) {
+            notify(LangOptions.MainPage[currentLang].exceedError)
+            return -1;
+        }
         return TweetSearch;
     }
 

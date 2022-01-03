@@ -16,7 +16,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 3px solid red; */
+    /* opacity: 0.3;
+    border: 3px solid red; */
 }
 
 .display_btns button{

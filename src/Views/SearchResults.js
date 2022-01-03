@@ -5,13 +5,13 @@ import Twitter from '../components/Twitter';
 import {useLanguage, LangOptions } from '../context';
 
 
-export default function SearchPage(props) {
+export default function SearchPage({data}) {
     //get the value of langugage context
     const currentLang = useLanguage();
 
-    const Totalcount = props.data.sentimment[0].tweet_count
-    const positiveCount = (props.data.sentimment[0].postive).length
-    const negativeCount = (props.data.sentimment[0].negative).length
+    const Totalcount = data.sentimment[0].tweet_count
+    const positiveCount = (data.sentimment[0].postive).length
+    const negativeCount = (data.sentimment[0].negative).length
 
    /**function formatDate(date){
         /*regular expression to replace a sequence of four digits, 
@@ -66,16 +66,16 @@ export default function SearchPage(props) {
 
             <span className="graphs_results">
                 <div className="Graph_Container ChartsGraphs">
-                    <img className="Graph_Img ChartsGraphs_img" src={`data:image/png;base64, ${props.data.sentimment[1][0]}`} alt="Bar Chart" />
+                    <img className="Graph_Img ChartsGraphs_img" src={`data:image/png;base64, ${data.sentimment[1][0]}`} alt="Bar Chart" />
                 </div>
                 <div className='Graph_Container PieGraphs'>
-                    <img className="Graph_Img PieGraphs_img" src={`data:image/png;base64, ${props.data.sentimment[1][1]}`} alt="Pie Chart" />
+                    <img className="Graph_Img PieGraphs_img" src={`data:image/png;base64, ${data.sentimment[1][1]}`} alt="Pie Chart" />
                 </div>
             </span>
 
-            <Twitter postive={props.data.sentimment[0].postive}
-                    negative={props.data.sentimment[0].negative}
-                    searchTerm={props.data.sentimment[0].search_term}/> 
+            <Twitter postive={data.sentimment[0].postive}
+                    negative={data.sentimment[0].negative}
+                    searchTerm={data.sentimment[0].search_term}/> 
         
         
         </div>

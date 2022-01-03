@@ -13,7 +13,7 @@ import {useLanguage, LangOptions } from '../context';
 
 
 
-export default function Twitter(props) {
+export default function Twitter({postive, negative, searchTerm}) {
     const [postiveTweets, setPostiveTweets] = useState([])
     const [negativeTweets, setNegativeTweets] = useState([])
     const [isPositiveCliced, setIsPositiveCliced] = useState('true')
@@ -127,16 +127,16 @@ export default function Twitter(props) {
         setPostiveTweets([])
         setNegativeTweets([])
 
-        props.postive.sort(compare)
-        props.negative.sort(compare)
+        postive.sort(compare)
+        negative.sort(compare)
 
-        setPostiveTweets(props.postive) 
-        setNegativeTweets(props.negative)
+        setPostiveTweets(postive) 
+        setNegativeTweets(negative)
 
         //get the buttons div height to be used in the scrollhandler function
         const buttons = document.getElementById("display_btns");
         setDivHeight(buttons.clientHeight)
-    }, [props.postive, props.negative])
+    }, [postive, negative])
 
     //display tweets based on the button clicked (i.e positive or negative)
     const displayRequestClass = () => {
@@ -185,7 +185,7 @@ export default function Twitter(props) {
         )}
         else{
             classifiedTweets = negativeTweets.map((tweet) => {
-                tweet.tweet.replace(props.searchTerm, "<b style={{'color': '#1DA1F2'}}>"+props.searchTerm+"</b>")
+                tweet.tweet.replace(searchTerm, "<b style={{'color': '#1DA1F2'}}>"+searchTerm+"</b>")
                 return(
                     <span className="tweet_container" key={tweet.id+uuidv4()}>
                         <div className="profile_img">
@@ -237,17 +237,17 @@ export default function Twitter(props) {
         };
         changeDisplayedTweets().then(() => {
             //Highlight Search Term
-            const upperCaseFirst = props.searchTerm.charAt(0).toUpperCase() + props.searchTerm.slice(1).toLowerCase();
-            const hashtag = props.searchTerm.replace(" ", '_')
+            const upperCaseFirst = searchTerm.charAt(0).toUpperCase() + searchTerm.slice(1).toLowerCase();
+            const hashtag = searchTerm.replace(" ", '_')
             const tweetsElements = document.getElementsByClassName('tweet_text')
             for (let i = 0; i < tweetsElements.length; i++) {
                 tweetsElements[i].innerHTML = tweetsElements[i].innerHTML.replaceAll(`${upperCaseFirst}`, "<b>"+upperCaseFirst+"</b>");
                 tweetsElements[i].innerHTML = tweetsElements[i].innerHTML.replaceAll(`${hashtag}`, "<b>"+hashtag+"</b>");
             }
             console.log(upperCaseFirst)
-            console.log(props.searchTerm)
+            console.log(searchTerm)
         });
-    }, [postiveTweets, negativeTweets, isPositiveCliced, isNegativeClicked, props.searchTerm])
+    }, [postiveTweets, negativeTweets, isPositiveCliced, isNegativeClicked, searchTerm])
 
     return (
         <div className="display_tweets">
@@ -264,13 +264,13 @@ export default function Twitter(props) {
 
 
 // <span className="tweet_container">
-//     <img src={props.tweets[1].user.profile_image_url} alt="profile image"></img>
+//     <img src={tweets[1].user.profile_image_url} alt="profile image"></img>
 //     <div className="user_info">
 //         <span style={{'display': 'flex', 'align-items':'center'}}>
-//             <b style={{'color':'#F5F8FA', 'font-size':'1em', 'margin-left': '-0.6em'}}>{props.tweets[1].user.name}</b>
-//             <p style={{'color':'#AAB8C2', 'font-size':'0.8em', 'margin-left': '0.8em'}}>{`@${props.tweets[1].user.screen_name}`}</p>
+//             <b style={{'color':'#F5F8FA', 'font-size':'1em', 'margin-left': '-0.6em'}}>{tweets[1].user.name}</b>
+//             <p style={{'color':'#AAB8C2', 'font-size':'0.8em', 'margin-left': '0.8em'}}>{`@${tweets[1].user.screen_name}`}</p>
 //         </span>
-//         <p className='tweet_text' >{ props.tweets[1].text}</p>
+//         <p className='tweet_text' >{ tweets[1].text}</p>
 //     </div>
 // </span>
 

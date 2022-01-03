@@ -14,7 +14,11 @@ class API {
       return res.data;
     })
     .catch((err) =>{
-      console.log(err)
+      console.log(err.response.status)
+      //check if the user exceeded their daily limit by checking their IP address
+        if(err.response.status === 401) {
+          return -2;
+        }
       return -1;
     })
   };
