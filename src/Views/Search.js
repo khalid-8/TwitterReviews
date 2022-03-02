@@ -44,6 +44,10 @@ export default function Search() {
         }
         //Send th request to the Backend
         const TweetSearch = await API.Search(req)
+        if(TweetSearch === -1) {
+            notify(LangOptions.MainPage[currentLang].generalError)
+            return -1;
+        }
         //check if the user exceeded their daily limit by checking their IP address
         if(TweetSearch === -2) {
             notify(LangOptions.MainPage[currentLang].exceedError)

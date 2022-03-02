@@ -2,11 +2,13 @@ const LangOptions = {
     "MainPage" : {
         "en" : {
             "placeHolder" : "Search For a product or services",
+            "generalError" : "Something Went Wrong",
             "emptyError" : "You can't Leave the Search Box Empty",
             "exceedError" : "You Exceeded Your Daily Search Limit"
         },
         "ar" : {
             "placeHolder" : "ابحث عن منتج او خدمة",
+            "generalError" : "حدث خطأ ما",
             "emptyError" : "لا يمكنك ترك خانة البحث فارغة", 
             "exceedError" : "لقد تجاوزت حدك اليومي للبحث"
         }
