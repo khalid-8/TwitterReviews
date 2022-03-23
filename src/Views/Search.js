@@ -16,11 +16,19 @@ export default function Search() {
     const currentLang = useLanguage();
 
     async function IpAddExceedLimit(){
+        //if an address value exists in the local storage return in
+        if (localStorage["address"]){
+            //decode the ip address from the local storage
+            return Buffer.from(localStorage["address"], 'base64').toString('ascii')
+        }
+        //else get the users IP address
         const ipAdd = await API.GetIpAddress()
         console.log(ipAdd.IPv4)
-        return ipAdd.IPv4
-        // if (ipAdd.IPv4 === "33.167.66.156") return true
-        // return false
+        //encode the ip address to base64 and store it to the local storage
+        localStorage["address"] =Buffer.from(ipAdd.IPv4).toString('base64');
+        console.log("ADDED NEW IP ADDRESS");
+        //decode the ip address from the local storage
+        return Buffer.from(localStorage["address"], 'base64').toString('ascii')
     }
 
     async function search(query){
@@ -29,12 +37,12 @@ export default function Search() {
             notify(LangOptions.MainPage[currentLang].emptyError)
             return -1;
         }
+        //retrive the user's IP address 
         const userIp = await IpAddExceedLimit()
         // trigger the loader
         SetLoading(true);
         //check if the query is in arabic
         const ar = new RegExp('[ء-ي]+')
-        // const lan = new RegExp("[\u0600-\u06FF]")
         //request body to be sent to the backend
         const req = {
             'query' : query,
@@ -42,7 +50,7 @@ export default function Search() {
             'ip_address': userIp
         
         }
-        //Send th request to the Backend
+        //Send the request to the Backend
         const TweetSearch = await API.Search(req)
         if(TweetSearch === -1) {
             notify(LangOptions.MainPage[currentLang].generalError)
@@ -66,7 +74,7 @@ export default function Search() {
         SearchBar.blur();
         //Search Twitter API for the input value
         const results = await search(event.target.value)
-        console.log(results)
+        // console.log(results)
         if (results !== -1){
             setTweets(results);
             //Add class name to the SearchBar and Logo elements to enalbe the animiation
@@ -97,11 +105,11 @@ export default function Search() {
             </div>      
             <div id='main_area' className="MainArea"> 
                 <h1 style={hideTitle ? { visibility: 'hidden', opacity: 0, transition:' visibility 1s, opacity 0.5s linear'} : {}} className="Title">Twitter Reviews</h1>
-                <input id='SeachBar' type="text" placeholder={LangOptions.MainPage[currentLang].placeHolder} onKeyUp={SubmitOnEnter}/*onFocus="blur();"*/ />
+                <input id='SeachBar' type="text"  style={{"direction":`${currentLang === 'en' ? 'ltr' : 'rtl'}`}} placeholder={LangOptions.MainPage[currentLang].placeHolder} onKeyUp={SubmitOnEnter}/*onFocus="blur();"*/ />
             </div>
             {hideTitle ? <SearchResults data={tweets}/> : ""}
             {loading ? 
-            <div className="blurBG"> <Loader className="Loader" type="ThreeDots" color="#00BFFF" height={100} width={100} timeout={15000}/> </div> : ""}
+            <div className="blurBG"> <Loader className="Loader" type="ThreeDots" color="#00BFFF" height={100} width={100} timeout={60000}/> </div> : ""}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import Search from './Views/Search';
 import { LangProvider} from './context/langContext';
 import { Notification } from "./components";
-
+// import {AppState} from 'react';
 
 //import Dotenv Lib
 require('dotenv').config()
@@ -12,7 +12,7 @@ function App() {
   return (
       <LangProvider>
         <Search/>
-        <Notification/>
+        <Notification vertical={'top'} horizontal={'right'}/>
       </LangProvider>
   );
 }

@@ -272,7 +272,7 @@ export default function TestTwitter() {
                         </div>
                         <div className="tweet_info">
                             <span className="user_info">
-                                <div style={{'display': 'flex', 'align-items':'center'}}>
+                                <div style={{'display': 'flex', 'alignItems':'center'}}>
                                     <b style={{'color':'#F5F8FA', 'fontSize':'1em'}}>{tweet.screen_name}</b>
                                     {tweet.verified ? <MdVerified className="verified_icon"/>: null}
                                     <p style={{'color':'#AAB8C2', 'fontSize':'0.8em', 'marginLeft': '0.5em'}}>{`@${tweet.username}`}</p>
@@ -315,7 +315,7 @@ export default function TestTwitter() {
                         </div>
                         <div className="tweet_info">
                             <span className="user_info">
-                                <div style={{'display': 'flex', 'align-items':'center'}}>
+                                <div style={{'display': 'flex', 'alignItems':'center'}}>
                                     <b style={{'color':'#F5F8FA', 'fontSize':'1em'}}>{tweet.screen_name}</b>
                                     {tweet.verified ? <MdVerified className="verified_icon"/>: null}
                                     <p style={{'color':'#AAB8C2', 'fontSize':'0.8em', 'marginLeft': '0.5em'}}>{`@${tweet.username}`}</p>

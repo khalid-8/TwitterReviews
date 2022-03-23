@@ -7,10 +7,9 @@ import { axiosInstance } from "./axiosInstance";
 class API {
   // static baseURL = `${process.env.REACT_APP_BASE_URL}/1.1/`
   //Return content from the DB
-  
   Search = (query) => { 
     return axiosInstance.post(`twitter/`, query).then((res) =>{
-      console.log(res);
+      // console.log(res);
       return res.data;
     })
     .catch((err) =>{
@@ -28,7 +27,7 @@ class API {
   };
   
   GetIpAddress = () => {
-    return axiosInstance.get('https://geolocation-db.com/json/').then((res) =>{
+    return axiosInstance.get('http://geolocation-db.com/json/').then((res) =>{
       console.log(res.data);
       return res.data;
     }).catch((err) =>{

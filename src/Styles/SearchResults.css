@@ -107,8 +107,8 @@ and (orientation: portrait) {
 
     @keyframes slideIN {
         0%   {transform: translateY(100%);}
-        25%  {transform: translateY(75%);}
-        50%  {transform: translateY(50%);}
+        /* 25%  {transform: translateY(80%);}
+        50%  {transform: translateY(60%);} */
         100% {transform: translateY(10%);}
     }
 
@@ -143,8 +143,8 @@ and (orientation: portrait) {
 
     @keyframes slideIN {
         0%   {transform: translateY(100%);}
-        25%  {transform: translateY(75%);}
-        50%  {transform: translateY(50%);}
+        /* 25%  {transform: translateY(80%);}
+        50%  {transform: translateY(60%);} */
         100% {transform: translateY(10%);}
     }
 

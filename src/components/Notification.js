@@ -48,6 +48,7 @@ export default function Notification (props) {
             "aria-describedby": "snackbar-message-id",
         }}
         />
+        
     );
     if (message === undefined) return null;
     if (message === "") return null;

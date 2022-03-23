@@ -3,7 +3,7 @@
   /* Set rules to fill background */
   height: 100vh;
   width: 100vw;
-  position: relative;
+  position: fixed;
   background-size: cover;
   background-position: 50% 50%;
   overflow: scroll;
@@ -75,8 +75,9 @@ h1.Title{
   position: absolute;
   /* bottom: 1em; */
   /* display: block; */
-  text-align: left;
-  padding: 0.1em 1em; 
+  font-size: medium;
+  font-weight:900;
+  padding: 0.2em 1em; 
   width: 90%;
   height: 2.3em;
   margin: 2em 0.4em;
@@ -85,7 +86,7 @@ h1.Title{
   background: -webkit-linear-gradient(90deg, rgba(2,0,36,0.6) 0%, rgba(40,5,105,0.5) 53%, rgba(255,255,255,0.3) 100%);
   background: -moz-linear-gradient(90deg, rgba(2,0,36,0.6) 0%, rgba(40,5,105,0.5) 53%, rgba(255,255,255,0.3) 100%);
   border-radius: 1em;
-  color:#FFFFFF;
+  color:#fafafa;
   border-color: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255,255,255,0.3) 100%);
 }
 
@@ -97,8 +98,20 @@ h1.Title{
 #SeachBar::-webkit-input-placeholder{
   color:#ffffffa8;
   text-align: center;
+  font-size: small;
 }
 
+#SeachBar:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px #400068b0 inset;
+  -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+/* #SeachBar:-webkit-autofill,
+#SeachBar:-webkit-autofill:hover,
+#SeachBar:-webkit-autofill:focus,
+#SeachBar:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+} */
 
 .blurBG{
   position: fixed;
@@ -155,10 +168,10 @@ h1.Title{
   100% {transform: translate(-50%, -250%);}
 }
 @keyframes Top {
-  0%   {top: 3;}
-  25%  {top: 2;}
-  50%  {top: 1;}
-  100% {top: 0.5em;}
+  /* 0%   {top: 3em;} */
+  /* 25%  {top: 2.5em;}
+  50%  {top: 2.2em;} */
+  100% {top: 2em;}
 }
 
 @keyframes LogoSlide {
@@ -182,7 +195,11 @@ h1.Title{
         /* border-color: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(255,255,255,1) 100%); */
         border:  1px solid linear-gradient(120deg, rgba(2,0,36,0.6) 0%, rgba(40,5,105,0.5) 53%, rgba(255,255,255,0.3) 100%);
         border-color:initial;
+        /* padding: .5em 1em;  */
       }
+      /* #SeachBar::-webkit-input-placeholder{
+        font-size: 1.3em;
+      } */
       .Logo{
         margin-top: 25em;
       }
@@ -203,6 +220,29 @@ h1.Title{
         /* display: flex; */
         /* margin: 2em 0em; */
         /* top: 2em; */
+      }
+      /* this css will only be used when the screen size is min 800px*/
+      @media screen and (min-width: 800px) {
+        #SeachBar::-webkit-input-placeholder{
+          /* font-size: 1.3em; */
+          padding: 0.8em 1em; 
+        } 
+        #SeachBar{
+          /* padding: 0.6em 1em;  */
+          font-size: 1em;
+        }
+        h1.Title{
+          white-space: nowrap;
+        }
+        .Logo{
+          margin-top: 15em;
+        }
+        @keyframes Top {
+          /* 0%   {top: 16em;}
+          25%  {top: 8em;}
+          50%  {top: 4em;} */
+          100% {top: 2em;}
+        }
       }
     } 
 }
@@ -233,7 +273,7 @@ and (orientation: portrait){
   }
 
   .Logo{
-    /* margin-top: 15em; */
+    margin-top: 15em;
     width: 9em;
   }
 
@@ -253,7 +293,9 @@ and (orientation: portrait){
     /* bottom: 3em; */
     /* width: 90%; */
   }
-
+  /* #SeachBar::-webkit-input-placeholder{
+    font-size: .3em;
+  } */
   #SeachBar:focus{
     box-shadow: 2px 4px #ccc;
   }
@@ -280,10 +322,8 @@ and (orientation: portrait){
   100% {transform: translate(-50%, -150%);}
   } */
   @keyframes Top {
-    0%   {top:20em;}
-    25%   {top:15em;}
-    75%   {top:8em;}
-    100% {top:4em;}
+    /* 0%    {top:20em;} */
+    100%  {top:4em;}
   }
 }
 
@@ -358,9 +398,7 @@ and (orientation: portrait){
   100% {transform: translate(-50%, -150%);}
   } */
   @keyframes Top {
-    0%   {top:20em;}
-    25%   {top:15em;}
-    75%   {top:8em;}
-    100% {top:4em;}
+    /* 0%    {top:20em;} */
+    100%  {top:4em;}
   }
 }
