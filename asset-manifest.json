@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/TwitterReviews/static/css/main.0cf48376.chunk.css",
+    "main.js": "/TwitterReviews/static/js/main.7fee23a3.chunk.js",
+    "main.js.map": "/TwitterReviews/static/js/main.7fee23a3.chunk.js.map",
+    "runtime-main.js": "/TwitterReviews/static/js/runtime-main.c15c6a1c.js",
+    "runtime-main.js.map": "/TwitterReviews/static/js/runtime-main.c15c6a1c.js.map",
+    "static/js/2.49fd70e5.chunk.js": "/TwitterReviews/static/js/2.49fd70e5.chunk.js",
+    "static/js/2.49fd70e5.chunk.js.map": "/TwitterReviews/static/js/2.49fd70e5.chunk.js.map",
+    "static/js/3.66f900c4.chunk.js": "/TwitterReviews/static/js/3.66f900c4.chunk.js",
+    "static/js/3.66f900c4.chunk.js.map": "/TwitterReviews/static/js/3.66f900c4.chunk.js.map",
+    "index.html": "/TwitterReviews/index.html",
+    "static/css/main.0cf48376.chunk.css.map": "/TwitterReviews/static/css/main.0cf48376.chunk.css.map",
+    "static/js/2.49fd70e5.chunk.js.LICENSE.txt": "/TwitterReviews/static/js/2.49fd70e5.chunk.js.LICENSE.txt",
+    "static/media/Search.css": "/TwitterReviews/static/media/MobileBG.fa77ab5b.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c15c6a1c.js",
+    "static/js/2.49fd70e5.chunk.js",
+    "static/css/main.0cf48376.chunk.css",
+    "static/js/main.7fee23a3.chunk.js"
+  ]
+}
