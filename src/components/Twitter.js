@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react'
-// import API from './helprs/api'
-// import './Styles/Twitter.css'
 import { v4 as uuidv4 } from 'uuid';
 import '../Styles/testTwitter.css'
 import { AiOutlineHeart } from 'react-icons/ai';

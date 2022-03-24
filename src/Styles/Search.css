@@ -1,5 +1,5 @@
 .App {
-  background-image: url('../helprs/BGimg/BG.png');
+  background-image: url('../helpers/Images/BG.png');
   /* Set rules to fill background */
   height: 100vh;
   width: 100vw;
@@ -256,7 +256,7 @@ and (max-device-width: 812px)
 and (-webkit-min-device-pixel-ratio: 3)
 and (orientation: portrait){ 
   .App{
-    background-image: url('../helprs/BGimg/MobileBG.jpg');
+    background-image: url('../helpers/Images/MobileBG.jpg');
     /* -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -334,7 +334,7 @@ and (max-device-width: 568px)
 and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: portrait){ 
   .App{
-    background-image: url('../helprs/BGimg/MobileBG.jpg');
+    background-image: url('../helpers/Images/MobileBG.jpg');
     /* -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

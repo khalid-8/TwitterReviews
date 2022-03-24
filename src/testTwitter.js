@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-// import API from './helprs/api'
 import './Styles/testTwitter.css'
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiRepost} from 'react-icons/bi';

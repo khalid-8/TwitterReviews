@@ -2,11 +2,11 @@ import '../Styles/Search.css'
 import React, {useState} from 'react'
 import Loader from "react-loader-spinner";
 import SearchResults from './SearchResults';
-import API from '../helprs/api'
+import API from '../helpers/api'
 import LangMenu from '../components/LangMenu'
 import {useLanguage, LangOptions } from '../context';
 import { notify } from "../components";
-
+import Logo from "../helpers/Images/logo.png"
 
 export default function Search() {
 
@@ -23,7 +23,7 @@ export default function Search() {
         }
         //else get the users IP address
         const ipAdd = await API.GetIpAddress()
-        console.log(ipAdd.IPv4)
+        if (ipAdd === undefined) return
         //encode the ip address to base64 and store it to the local storage
         localStorage["address"] =Buffer.from(ipAdd.IPv4).toString('base64');
         console.log("ADDED NEW IP ADDRESS");
@@ -37,10 +37,13 @@ export default function Search() {
             notify(LangOptions.MainPage[currentLang].emptyError)
             return -1;
         }
-        //retrive the user's IP address 
-        const userIp = await IpAddExceedLimit()
         // trigger the loader
         SetLoading(true);
+
+        //retrive the user's IP address 
+        const userIp = await IpAddExceedLimit()
+
+        if (userIp === undefined) return notify(LangOptions.MainPage[currentLang].generalError)
         //check if the query is in arabic
         const ar = new RegExp('[ء-ي]+')
         //request body to be sent to the backend
@@ -97,8 +100,8 @@ export default function Search() {
     }
     return (
         <div className="App">
-            <div className="Header"> 
-                <img id='twit_revLogo' className="Logo" src="images/Logo.png" alt="Twitter Reviews's Logo"/> 
+            <div className="Header">
+                <img id='twit_revLogo' className="Logo" src={Logo} alt="Twitter Reviews's Logo"/> 
             </div>
             <div className="ChangLang"> 
                 <LangMenu/>

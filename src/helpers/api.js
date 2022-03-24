@@ -27,7 +27,7 @@ class API {
   };
   
   GetIpAddress = () => {
-    return axiosInstance.get('http://geolocation-db.com/json/').then((res) =>{
+    return axiosInstance.get('https://geolocation-db.com/json/').then((res) =>{
       console.log(res.data);
       return res.data;
     }).catch((err) =>{
